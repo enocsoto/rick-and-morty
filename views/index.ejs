@@ -1,8 +1,28 @@
 <%- include('templates/cabecera')  %> 
     <div class="container">
-        <h1 class="text-primary"><%= nombre  %> <h1>
-        <h1><%= Status  %> <h1>
-        <h1><%= species  %> <h1>
-            
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">first seen in</th>
+              </tr>
+            </thead>
+            <tbody>
+               
+                <% if (personaje.length>0) { %>
+                    <% personaje.forEach(personajes => { %>
+                <tr>
+                <th scope="row"><%= personajes.id %> </th>
+                <td><%= personajes.name %> </td>
+                <td><%= personajes.first %> </td>
+              </tr>
+           
+              <% }) %>
+              <% } %>   
+           
+            </tbody>
+          </table>
+      
     </div>
     <%- include('templates/footer')  %> 

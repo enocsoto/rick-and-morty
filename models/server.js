@@ -1,5 +1,5 @@
 const express = require ('express');
-
+const axios = require('axios').default;
 class Server {
 
     constructor(){
@@ -24,10 +24,7 @@ class Server {
     }
 
     routes(){
-        this.app.get('/',(req, res)=>
-        res.render('index', {nombre: 'Eyehole Man', Status: "Alive", species: 'Alien'})
-        );
-         
+        this.app.use('/', require('../routes/routes'));
         this.app.get('*', (req, res)=>{
             res.send('404| Page Not Found');
         });
@@ -39,7 +36,16 @@ class Server {
             console.log('Servidor corriendo en el puerto '+ this.port);
         });
     }
-
+async personajes (personaje=''){
+    try {
+        const pers= await axios.get('https://rickandmortyapi.com/api/character')
+        //console.log(pers.data);
+        return personaje=[];
+    } catch (error) {
+        console.log('No se encontro lo solicitado');
+        return [];
+    }
+}
 }
 
 
